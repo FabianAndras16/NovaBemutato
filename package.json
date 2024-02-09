@@ -1,0 +1,26 @@
+{
+    "name": "hw_ex",
+    "version": "1.0.0",
+    "description": "Miután egy bootstra icons package-et lementettem valami miatt nem akar működni az oldal és nem tudok rájönni, hogy mi a probléma.\r Elnézést, hogy így adom le, de egy órával ez előtt a hiba előtt tökéletesen működött.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bootstrap-icons": "^1.10.4",
+        "cookie-parser": "^1.4.6",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "express-session": "^1.17.3",
+        "mongodb": "^5.6.0",
+        "mongoose": "^5.3.4",
+        "nodemon": "^2.0.22"
+    },
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "char": "^1.0.2"
+    }
+}

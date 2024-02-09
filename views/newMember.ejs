@@ -1,0 +1,92 @@
+<%- include('header') %>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Főoldal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/choirs">Kórusok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/members/<%= choir._id %>">Tagok</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">Rólunk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="/choirs/edit/:choirID">Kórus adatainak módosítása</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/members/list/:choirID/edit/:memberID">Tagok adatainak
+                            módosítása</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        <div class="container-fluid text-center">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-5">
+                    <h1>Új tag felvétele</h1>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-fluid text-left">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-5">
+                    <form action="/members/<%= choir._id %>/new" method="post">
+                        <div class=" mb-3">
+                            <label for="InputMemberName" class="form-label">Név</label>
+                            <input type="text" name="name" class="form-control" id="InputMemberName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputVoice" class="form-label">Szólam</label><br />
+                            <select name="voice" id="inputVoice">
+                                <option value="SZOPRÁN">SZOPRÁN</option>
+                                <option value="ALT">ALT</option>
+                                <option value="TENOR">TENOR</option>
+                                <option value="BASSZUS">BASSZUS</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputFolderNum" class="form-label">Mappaszám</label> <br />
+                            <select name="folderNumber" id="inputFolderNum">
+                                <% for (var j=0; j < membersCount; j++ ) { %>
+                                    <option value="<%= j %>">
+                                        <%= (j+1) %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputEmail" class="form-label">Email cím</label>
+                            <input type="email" name="email" class="form-control" id="InputEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="InputJoining" class="form-label">Csatlakozás éve</label>
+                            <input type="number" name="joiningYear" class="form-control" id="InputJoining" required>
+                        </div>
+                        <input type="submit" class="btn btn-primary" value="Tag hozzáadása">
+                        <a href="/members/<%= choir._id %>" class="btn btn-warning">Mégse</a>
+                    </form>
+                </div>
+                <div class="col">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>

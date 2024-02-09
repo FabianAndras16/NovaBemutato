@@ -1,0 +1,104 @@
+ - index.html - login form bejelentkezés előre megadott jelszó és user alapján
+ - choirs.html - kórusok listája, a tagok listájára navigálás (CRUD) 
+ - choirModify.html - a kórus adatainak módosítása
+ - newChoir.html - új kórus hozzáadása
+ - members.html - tagok listája az egyes kórusokhoz tartozóan (CRUD)
+ - memberModify.html - tagok adatainak módosítása
+ - newMember.html - új tag hozzáadása
+ - about.html - valami szöveges leírás az oldalról
+
+
+Routing:
+middlewares/authentication/
+    handlePassMW.js
+    checkPassMW.js
+    authMW.js
+    renderMW.js
+
+middlewares/choirs/
+    getChoirsMW.js
+    getChoirMW.js
+    saveChoirMW.js //lehet két MW ahogy könnyebb lesz
+    delChoirMW.js
+
+middlewares/members/
+    getMembersMW.js
+    getMemberMW.js
+    saveMemberMW.js //lehet két MW ahogy könnyebb lesz
+    delMemberMW.js
+
+
+---------------------------------------------------------
+
+GET /?error=wrongpw                       - index.html
+    handlePassMW
+    renderMW(index.html)
+
+POST /login                              - jelszó ellenőrzés, ha ok, akkor mehetünk a kórusok listájára
+    checkPass
+
+
+---------------------------------------------------------
+
+GET /choirs                              - choirs.html
+    authMW
+    getChoirsMW
+    renderMW(choirs.html)
+
+
+GET,POST /choirs/new                          - newChoir.html   (új)
+    authMW
+    saveChoirMW
+    renderMW(newChoir.html)
+
+
+GET, POST /choirs/edit/:choirID                - choirModify.html (szerkesztés) 
+    authMW
+    getChoirMW
+    saveChoirMW
+    renderMW(choirModify.html)
+
+GET /choirs/del/:choirID
+    authMW
+    getChoirMW
+    delChoirMW
+
+
+--------------------------------------------------------
+
+
+GET /members/list/:choirID               - members.html 
+    authMW
+    getChoirMW
+    getMembersMW
+    renderMW(members.html)
+
+
+GET, POST /members/:choirID/new/:memberID     - newMember.html 
+    authMW
+    saveMemberMW
+    renderMW(newMember.html)
+
+
+GET, POST /members/list/:choirID/edit/:memberID     - memberModify.html - memberID-nek valami számnak kellene lennie ha jót akarok magamnak
+    authMW
+    getChoirMW
+    getMemberMW
+    saveMemberMW
+    renderMW(memberModify.html)
+
+
+GET /members/list/:choirID/del/:memberID 
+    authMW
+    getMemberMW
+    delMemberMW
+
+--------------------------------------------------------
+
+//esetleg regisztráció
+
+
+beadni:
+ - azt a valamit, ami a routingot feliratkoztatja
+ - azt a file-t ahonnan betöltődik a routing 
+ - üres MW file-ok kommentekkel
